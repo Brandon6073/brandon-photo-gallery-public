@@ -1,0 +1,55 @@
+
+{% extends 'photogalleryapp/main.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="form-photo-wrapper">
+
+  <div class="form-heading">
+    <a href="{% url 'gallery' %}">
+      <button class ="back-button">Back</button>
+    </a>
+    <h2>Add New Photo</h2>
+  </div>  
+  
+
+  <div class="form-photo">
+      
+    <!-- blank action means send to itselt(default) -->
+    <form class = "form" method = 'post' action="" enctype = "multipart/form-data"> 
+      <!-- enctype is for send file  -->
+
+      {% csrf_token %}
+
+      <label>Description</label>
+      <textarea class="input-field" required name= "description"type="textarea" placeholder = "Enter a description" class="form-control"></textarea>
+
+      <!-- name is used for backend -->
+
+
+      <label>Select Category</label>
+      <select class="input-field" name="category" class="form-control"> 
+        
+        <option value="none">Select a Category</option>
+          {% for category in categories %}
+          <option value="{{category.id}}">{{category.name}}</option>
+          {% endfor%}
+      </select>
+
+
+      <label>Create a new category</label>
+      <input class="input-field" name= "category_add"type="text" placeholder = "Create a new category" class="form-control">
+
+  
+      <label>Upload Image</label>
+      <input class="input-field" required name = "image" type="file" class="form-control-file">
+
+
+      <button type="submit" class ="submit-button">Submit</button>
+      
+    </form>
+
+  </div>
+</div>
+{% endblock %}

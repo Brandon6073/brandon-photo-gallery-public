@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<!--This is a base template-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet"><!--fonts from google-->
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Russo+One&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    
+    {% include 'photogalleryapp/navbar.html' %}
+    
+    <div class="left-bar">
+    </div>
+
+	<div class="main-container">  {% comment %} container name is to avoid conflic with bootstrap  {% endcomment %} 
+        {% block content %}  
+        {% endblock %}
+    </div>
+
+    <div class="right-bar">
+    </div>
+
+    <footer>
+        <span>&copy;Brandon</span>
+    </footer>
+        
+</body>
+
+</html>

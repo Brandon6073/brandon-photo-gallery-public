@@ -1,0 +1,45 @@
+
+{% extends 'photogalleryapp/main.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="form-photo-wrapper">
+
+  <div class="form-heading">
+    <a href="{% url 'gallery' %}" >
+      <button class ="back-button">Back</button>
+    </a>
+    <h2>Delete Photo</h2>
+  </div>  
+  
+
+  <div class="form-photo">
+
+    <img src="{{ photo.image.url }}" alt="{{photo.image}}">
+   
+
+
+    <form class="form-delete" action="{% url 'delete' photo.id %}" method="post">
+
+      {% csrf_token %}
+      <h3>Delete this photo?"</h3>
+      <div>
+        <a href="{% url 'gallery' %}">
+          <button class ="cancel-button">Cancel</button>
+        </a>
+  
+        <button type="submit" name="confirm" class ="delete-button">Delete</button>
+  
+      </div>
+      
+      
+    </form>
+
+     
+
+  </div>
+</div>
+{% endblock %}
+
+

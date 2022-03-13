@@ -1,0 +1,21 @@
+
+{% extends 'photogalleryapp/main.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="view-photo-wrapper">
+
+  <div class="photo-heading">
+    <a href="{% url 'gallery' %}" >
+      <button class ="back-button">Back</button>
+    </a>
+    <h2>{{photo.description}}</h2>
+  </div>  
+
+  <img class="view-image" src="{{ photo.image.url }}" alt="{{photo.image}}">
+
+
+
+</div>
+{% endblock %}

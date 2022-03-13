@@ -1,0 +1,62 @@
+
+{% extends 'photogalleryapp/main.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="form-photo-wrapper">
+
+  <div class="form-heading-update">
+    <a href="{% url 'gallery' %}" >
+      <button class ="back-button">Back</button>
+    </a>
+    <h2>Update Photo</h2>
+    
+      <a href="{% url 'delete' photo.id %}">
+        <button class ="delete-button">Delete</button>
+      </a>
+    
+    
+  </div>  
+  
+
+  <div class="form-photo">
+    <img src="{{ photo.image.url }}" alt="{{photo.image}}">
+      
+    <!-- blank action means send to itselt(default) -->
+    <form class = "form" method = 'post' action="" enctype = "multipart/form-data"> 
+      <!-- enctype is for send file  -->
+
+      {% csrf_token %}
+
+      <label>Description</label>
+      <textarea class="input-field" required name= "description"type="textarea" placeholder = "Enter a description" class="form-control">{{photo.description}}</textarea>
+
+      <!-- name is used for backend -->
+
+
+      <label>Select Category</label>
+      <select class="input-field" name="category" class="form-control"> 
+        
+        <option value="{{photo.category.id}}">{{photo.category}}</option>
+          {% for category in categories %}
+          <option value="{{category.id}}">{{category.name}}</option>
+          {% endfor%}
+      </select>
+
+
+      <label>Create a new category</label>
+      <input class="input-field" name= "category_add"type="text" placeholder = "Create a new category" class="form-control">
+
+  
+      <label>Replace Image</label>
+      <input class="input-field" name = "image" type="file" class="form-control-file">
+
+
+      <button type="submit" class ="submit-button">Update</button>
+      
+    </form>
+
+  </div>
+</div>
+{% endblock %}

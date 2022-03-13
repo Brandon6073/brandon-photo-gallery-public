@@ -1,0 +1,43 @@
+
+
+
+{% extends 'photogalleryapp/main.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="form-photo-wrapper">
+
+  <div class="form-heading">
+    <a href="{% url 'gallery' %}">
+      <button class ="back-button">Back</button>
+    </a>
+    <h2>Login as an Admin</h2>
+  </div>  
+
+    <div  class="form-photo">
+        <form class="form" method="POST" action="">
+            {% csrf_token %}
+
+            <label>Username</label>
+            <input class="input-field" type="text" name="username" placeholder="user1" class="form-control">
+            <label>Password</label>
+            <input class="input-field" type="password" name="password" placeholder="thisisuser1" class="form-control" >
+  
+            <input class="submit-button" type="submit" value="Login">
+
+        </form>
+
+    </div>
+
+    {% comment %} because this is a loop, receive all flash message 
+    no need to pass value (django already stored the value) {% endcomment %}
+    {% for message in messages%}
+        <p id = "messages">{{message}}</p>
+    {% endfor %}
+
+  
+
+ 
+</div>
+{% endblock %}
